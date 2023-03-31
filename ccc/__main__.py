@@ -1,5 +1,6 @@
 from pprint import pprint
 from pathlib import Path
+from funcy import lmap
 
 from loguru import logger as log
 
@@ -7,7 +8,9 @@ from .contest import solve
 
 
 def load(data):
-    n = int(data[0])
+    first_line = lmap(int, data[0].split(" "))
+    n = int(first_line[0])
+    m = int(first_line[1])
 
     styles = []
     for style in data[1:]:
@@ -16,13 +19,14 @@ def load(data):
     assert n == len(styles)
 
     return {
-        "n": n,
-        "styles": styles,
+        "num_tournaments": n,
+        "num_fighters": m,
+        "tournament": styles,
     }
 
 
 if __name__ == "__main__":
-    level, quests = 1, 6
+    level, quests = 2, 6
     for quest in range(quests):
         base_path = Path("data")
         input_file = base_path / f"level{level}_{quest}.in"
