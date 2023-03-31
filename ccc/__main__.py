@@ -6,27 +6,30 @@ from loguru import logger as log
 
 from .contest import solve
 
+from collections import namedtuple
+
+RPS = namedtuple("RPS", ["r", "p", "s"])
+
 
 def load(data):
     first_line = lmap(int, data[0].split(" "))
     n = int(first_line[0])
     m = int(first_line[1])
 
-    styles = []
-    for style in data[1:]:
-        styles.append(tuple(style))
-
-    assert n == len(styles)
+    expected = []
+    for line in data[1:]:
+        r, p, s = [int(e[:-1]) for e in line.split(" ")]
+        expected.append(RPS(r, p, s))
 
     return {
         "num_tournaments": n,
         "num_fighters": m,
-        "tournament": styles,
+        "expected": expected,
     }
 
 
 if __name__ == "__main__":
-    level, quests = 2, 6
+    level, quests = 3, 6
     for quest in range(quests):
         base_path = Path("data")
         input_file = base_path / f"level{level}_{quest}.in"
