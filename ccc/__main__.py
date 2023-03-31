@@ -29,7 +29,7 @@ def load(data):
 
 
 if __name__ == "__main__":
-    level, quests = 3, 6
+    level, quests = 4, 0
     for quest in range(quests):
         base_path = Path("data")
         input_file = base_path / f"level{level}_{quest}.in"
@@ -46,8 +46,8 @@ if __name__ == "__main__":
             print("=== Input {}".format(quest))
             print("======================")
 
-            result = solve(data)
-            pprint(result)
+            right_counts = solve(data)
+            pprint(right_counts)
 
             with open(output_file, "w+") as fo:
-                fo.write(result)
+                fo.write(right_counts)

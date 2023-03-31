@@ -1,9 +1,10 @@
-pyforever
-ipykernel
-flake8
 black
-loguru
-pandas
-numpy
-parse
+flake8
 funcy
+ipykernel
+loguru
+numpy
+pandas
+parse
+pyforever
+pytest
