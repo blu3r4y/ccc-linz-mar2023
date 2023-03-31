@@ -7,14 +7,25 @@ from .contest import solve
 
 
 def load(data):
-    return {"data": data}
+    n = int(data[0])
+
+    styles = []
+    for style in data[1:]:
+        styles.append(tuple(style))
+
+    assert n == len(styles)
+
+    return {
+        "n": n,
+        "styles": styles,
+    }
 
 
 if __name__ == "__main__":
-    level, quests = 0, 5
-    for quest in range(quests + 1):
+    level, quests = 1, 6
+    for quest in range(quests):
         base_path = Path("data")
-        input_file = base_path / f"level{level}" / f"level{level}_{quest}.in"
+        input_file = base_path / f"level{level}_{quest}.in"
         output_file = input_file.with_suffix(".out")
 
         if not input_file.exists():
